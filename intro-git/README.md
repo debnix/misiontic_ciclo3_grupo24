@@ -1,4 +1,4 @@
-# intro-git
+# Introduction to Git
 
 # Git basics commnand
 
