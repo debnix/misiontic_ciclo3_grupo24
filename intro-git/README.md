@@ -17,6 +17,7 @@
 - <strong>git revert commit <i>id-commit</i></strong> (devolverse a un commit sin eliminar el actual)
 - <strong>git commit --amend -m "nuevo comentario"</strong> (sobreescribir un commit)
 - <strong>git commit --amend --no-edit</strong> (guardar cambios en el mismo commit anterior sin editar el comentario)
+- <strong>git clone <i>url-repo-remote</i></strong> (clonar proyecto)
 
 # Tools
 
