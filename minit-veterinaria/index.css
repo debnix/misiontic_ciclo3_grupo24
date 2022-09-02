@@ -2,3 +2,19 @@ h2 {
 	text-align: center;
 	margin-top: 50px;
 }
+
+/*Estilo para el formulario*/
+#section-form form {
+	width: 350px;
+}
+
+#section-form {
+	display: flex;
+	justify-content: center;
+	padding-top: 50px;
+}
+
+#cont-btn {
+	display: flex;
+	justify-content: center;
+}
