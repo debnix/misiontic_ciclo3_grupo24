@@ -34,4 +34,18 @@ let persona = {
   edad: 28,
   telefonos: ['31234', '4567']
 }
+// Imprimir objeto
 console.log(persona)
+
+// Acceder a los atributos
+console.log(persona.nombre)
+console.log(persona['apellido'])
+// Obtener los valores como un array
+console.log(Object.values(persona))
+// Obtener las llaves como un array
+console.log(Object.keys(persona))
+// Imprimir valores de un objeto
+let values = Object.values(persona)
+for (let i = 0; i < values.length; i++) {
+  console.log(values[i])
+}
