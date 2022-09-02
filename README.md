@@ -5,3 +5,4 @@
 - Introduction to Scrum
 - Introduction to Git
 - Introduction to HTML
+- Introduction to Java Script
