@@ -100,16 +100,20 @@ function mostrar_usuarios (users) {
   // Iterar el array users
   for (let i = 0; i < users.length; i++) {
     const obj = users[i]
+    let address = obj.address.street
+    address += `, ${obj.address.suite}`
+    address += `, ${obj.address.city}`
+
     tbody += `
       <tr>
         <td>${obj.id}</td>
         <td>${obj.name}</td>
         <td>${obj.username}</td>
         <td>${obj.email}</td>
-        <td>${obj.address}</td>
+        <td>${address}</td>
         <td>${obj.phone}</td>
         <td>${obj.website}</td>
-        <td>${obj.company}</td>
+        <td>${obj.company.name}</td>
       </tr>
     `
   }
