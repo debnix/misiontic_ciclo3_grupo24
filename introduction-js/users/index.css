@@ -1,0 +1,14 @@
+#table {
+	width: 100%;
+}
+
+#table,
+tr,
+th,
+td {
+	border: 1px solid black;
+}
+
+#section-table {
+	padding: 20px;
+}
