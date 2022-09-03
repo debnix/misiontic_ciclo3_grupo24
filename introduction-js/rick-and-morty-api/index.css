@@ -1,0 +1,17 @@
+.card {
+	border: 1px solid black;
+	width: 500px;
+	height: 200px;
+	border-radius: 20px;
+	overflow: hidden;
+	display: flex;
+}
+
+.card h2 {
+	text-align: center;
+}
+
+.card img {
+	width: 40%;
+	height: 100%;
+}
