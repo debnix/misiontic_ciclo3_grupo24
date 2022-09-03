@@ -1,7 +1,12 @@
 
 async function get_characters (url_api) {
+  /* fetch(url_api, {
+    method: 'GET' //'POST', //'PUT', //'DELETE'
+  }) */
   // Enviar petición Get
-  const resp = await fetch(url_api)
+  const resp = await fetch(url_api, {
+    method: 'GET'
+  })
   // Obtener datos
   const data = await resp.json()
   return data.results
