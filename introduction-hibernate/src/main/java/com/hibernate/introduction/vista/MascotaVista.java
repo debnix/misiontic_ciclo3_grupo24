@@ -1,5 +1,7 @@
 package com.hibernate.introduction.vista;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import com.hibernate.introduction.controlador.MascotaControlador;
@@ -46,8 +48,19 @@ public class MascotaVista {
     }
   }
 
-  public void consultarMascotaXnombre() {
-
+  public void consultarMascotasXapellido() {
+    String apellido = JOptionPane.showInputDialog(null, "Por favor ingrese el apellido");
+    try {
+      List<String> mascotas = controlador.getByLastname(apellido);
+      String info = "------------MASCOTAS----------";
+      for (int i = 0; i < mascotas.size(); i++) {
+        info += mascotas.get(i);
+      }
+      mostrarMensaje(info);
+    } catch (Exception e) {
+      e.printStackTrace();
+      mostrarMensaje("Por favor intete mas tarde");
+    }
   }
 
 }

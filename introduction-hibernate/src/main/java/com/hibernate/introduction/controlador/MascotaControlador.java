@@ -39,7 +39,7 @@ public class MascotaControlador {
     return mascota.toString();
   }
 
-  public List<String> getByLastname(String apellido) {
+  public List<String> getByLastname(String apellido) throws Exception {
     // List<String> mascotas = new ArrayList<>();
     Session session = factory.openSession();
     session.beginTransaction();
