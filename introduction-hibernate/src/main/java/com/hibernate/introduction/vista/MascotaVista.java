@@ -79,6 +79,21 @@ public class MascotaVista {
     }
   }
 
+  public void actualizarMascota() {
+    int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Por favor ingrese el identificador de la mascota"));
+    String nombre = JOptionPane.showInputDialog(null, "Ingrese nombre de la mascota: ");
+    String apellido = JOptionPane.showInputDialog(null, "Ingrese apellido del propietario: ");
+    String tipoMascota = JOptionPane.showInputDialog(null, "Ingrese el tipo de mascota :");
+    String raza = JOptionPane.showInputDialog(null, "Raza: ");
+    int edad = Integer.parseInt(JOptionPane.showInputDialog(null, "Edad de la mascota:"));
+    String observacion = JOptionPane.showInputDialog(null, "Observación");
+    try {
+      controlador.update(id, nombre, apellido, tipoMascota, raza, edad, observacion);
+    } catch (Exception e) {
+      // TODO: handle exception
+    }
+  }
+
   public void menu() {
     String info = "1) Registrar mascota\n";
     info += "2) Consultar mascota por id\n";
