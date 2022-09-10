@@ -68,7 +68,7 @@ public class MascotaControlador {
   }
 
   public void update(int id, String nombre, String apellido, String tipo_mascota, String raza, int edad,
-      String observacion) {
+      String observacion) throws Exception {
     Session session = factory.openSession();
     session.beginTransaction();
     Mascota mascota = session.find(Mascota.class, id);
