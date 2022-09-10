@@ -36,6 +36,7 @@ public class MascotaControlador {
     Session session = factory.openSession();
     session.beginTransaction();
     Mascota mascota = session.find(Mascota.class, id);
+    session.close();
     return mascota.toString();
   }
 
@@ -45,7 +46,7 @@ public class MascotaControlador {
     session.beginTransaction();
     List<Mascota> objMascotas = session.createQuery("from Mascota where apellido = :ap", Mascota.class)
         .setParameter("ap", apellido).list();
-
+    session.close();
     return objToString(objMascotas);
     // return mascotas;
   }
@@ -56,6 +57,14 @@ public class MascotaControlador {
       mascotas.add(objMascotas.get(i).toString());
     }
     return mascotas;
+  }
+
+  public List<String> getList() throws Exception {
+    Session session = factory.openSession();
+    session.beginTransaction();
+    List<Mascota> mascotas = session.createQuery("from Mascota", Mascota.class).list();
+    session.close();
+    return objToString(mascotas);
   }
 
 }

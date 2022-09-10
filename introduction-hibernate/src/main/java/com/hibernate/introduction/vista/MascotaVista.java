@@ -52,10 +52,26 @@ public class MascotaVista {
     String apellido = JOptionPane.showInputDialog(null, "Por favor ingrese el apellido");
     try {
       List<String> mascotas = controlador.getByLastname(apellido);
-      String info = "------------MASCOTAS----------";
-      for (int i = 0; i < mascotas.size(); i++) {
-        info += mascotas.get(i);
-      }
+      String info = listToString(mascotas);
+      mostrarMensaje(info);
+    } catch (Exception e) {
+      e.printStackTrace();
+      mostrarMensaje("Por favor intete mas tarde");
+    }
+  }
+
+  public String listToString(List<String> list) {
+    String info = "------------MASCOTAS----------";
+    for (int i = 0; i < list.size(); i++) {
+      info += list.get(i);
+    }
+    return info;
+  }
+
+  public void listarMascotas() {
+    try {
+      List<String> mascotas = controlador.getList();
+      String info = listToString(mascotas);
       mostrarMensaje(info);
     } catch (Exception e) {
       e.printStackTrace();
@@ -90,6 +106,7 @@ public class MascotaVista {
         case 5:
           break;
         case 6:
+          listarMascotas();
           break;
         case -1:
           break;
