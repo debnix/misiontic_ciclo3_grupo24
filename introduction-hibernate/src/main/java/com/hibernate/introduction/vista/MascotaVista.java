@@ -63,4 +63,41 @@ public class MascotaVista {
     }
   }
 
+  public void menu() {
+    String info = "1) Registrar mascota\n";
+    info += "2) Consultar mascota por id\n";
+    info += "3) Consultar mascotas por apellidos\n";
+    info += "4) Actualizar info mascota\n";
+    info += "5) Eliminar mascota\n";
+    info += "6) Listar mascotas\n";
+    info += "-1) Salir\n";
+
+    int opc = 0;
+    while (opc != -1) {
+      opc = Integer.parseInt(JOptionPane.showInputDialog(null, info));
+      switch (opc) {
+        case 1:
+          crearMascota();
+          break;
+        case 2:
+          consultarMascotaXid();
+          break;
+        case 3:
+          consultarMascotasXapellido();
+          break;
+        case 4:
+          break;
+        case 5:
+          break;
+        case 6:
+          break;
+        case -1:
+          break;
+        default:
+          mostrarMensaje("Por favor ingrese una opción válida");
+          break;
+      }
+    }
+  }
+
 }
