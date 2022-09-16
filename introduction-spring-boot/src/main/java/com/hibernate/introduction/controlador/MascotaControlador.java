@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,6 +44,15 @@ public class MascotaControlador {
     return mascotas;
   }
 
+  @GetMapping("/{id}")
+  public Mascota readById(@PathVariable(name = "id") int id) throws Exception {
+    Session session = factory.openSession();
+    session.beginTransaction();
+    Mascota mascota = session.find(Mascota.class, id);
+    session.close();
+    return mascota;
+  }
+
   public Session createSession() {
     Session session = factory.openSession();
     session.beginTransaction();
@@ -57,14 +67,6 @@ public class MascotaControlador {
     session.persist(mascota);
     session.getTransaction().commit();
     session.close();
-  }
-
-  public String readById(int id) throws Exception {
-    Session session = factory.openSession();
-    session.beginTransaction();
-    Mascota mascota = session.find(Mascota.class, id);
-    session.close();
-    return mascota.toString();
   }
 
   public List<String> getByLastname(String apellido) throws Exception {
