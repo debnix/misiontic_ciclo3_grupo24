@@ -3,6 +3,7 @@ package com.hibernate.introduction.controlador;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ public class MascotaControlador {
   }
 
   @GetMapping
+  @CrossOrigin("*")
   public List<Mascota> getList() {
     List<Mascota> mascotas = new ArrayList<>();
     try {
@@ -38,6 +40,7 @@ public class MascotaControlador {
   }
 
   @GetMapping("/{id}")
+  @CrossOrigin("*")
   public Mascota readById(@PathVariable(name = "id") int id) {
     Mascota mascota = new Mascota();
     try {
@@ -49,6 +52,7 @@ public class MascotaControlador {
   }
 
   @GetMapping("/fullname")
+  @CrossOrigin("*")
   public List<Mascota> getByLastname(@RequestParam String nombre, @RequestParam String apellido) {
     List<Mascota> mascotas = new ArrayList<>();
     try {
@@ -60,11 +64,13 @@ public class MascotaControlador {
   }
 
   @PostMapping
+  @CrossOrigin("*")
   public String create(@RequestBody Mascota mascota) {
     return servicio.create(mascota);
   }
 
   @PutMapping
+  @CrossOrigin("*")
   public String update(@RequestBody Mascota mascota) {
     String message = "";
     try {
@@ -77,6 +83,7 @@ public class MascotaControlador {
   }
 
   @DeleteMapping("/{id}")
+  @CrossOrigin("*")
   public String delete(@PathVariable(name = "id") int id) {
     return servicio.delete(id);
   }
