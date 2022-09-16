@@ -9,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,30 +93,22 @@ public class MascotaControlador {
     return message;
   }
 
+  @PutMapping
+  public void update(@RequestBody Mascota mascota) throws Exception {
+    Session session = factory.openSession();
+    session.beginTransaction();
+    // Realziar actualización en la BD
+    session.merge(mascota);
+    session.getTransaction().commit();
+    session.close();
+  }
+
   public List<String> objToString(List<Mascota> objMascotas) {
     List<String> mascotas = new ArrayList<>();
     for (int i = 0; i < objMascotas.size(); i++) {
       mascotas.add(objMascotas.get(i).toString());
     }
     return mascotas;
-  }
-
-  public void update(int id, String nombre, String apellido, String tipo_mascota, String raza, int edad,
-      String observacion) throws Exception {
-    Session session = factory.openSession();
-    session.beginTransaction();
-    Mascota mascota = session.find(Mascota.class, id);
-    // Actualizar objeto
-    mascota.setNombre(nombre);
-    mascota.setApellido(apellido);
-    mascota.setTipo_mascota(tipo_mascota);
-    mascota.setRaza(raza);
-    mascota.setEdad(edad);
-    mascota.setObservacion(observacion);
-    // Realziar actualización en la BD
-    session.merge(mascota);
-    session.getTransaction().commit();
-    session.close();
   }
 
   public void deleteService(Mascota mascota) {
