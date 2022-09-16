@@ -9,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hibernate.introduction.modelo.Mascota;
@@ -26,6 +27,12 @@ public class MascotaControlador {
         .configure("cfg.xml")
         .addAnnotatedClass(Mascota.class)
         .buildSessionFactory();
+  }
+
+  public Session createSession() {
+    Session session = factory.openSession();
+    session.beginTransaction();
+    return session;
   }
 
   /*
@@ -53,10 +60,18 @@ public class MascotaControlador {
     return mascota;
   }
 
-  public Session createSession() {
+  @GetMapping("/fullname")
+  public List<Mascota> getByLastname(@RequestParam String nombre, @RequestParam String apellido) throws Exception {
+    // List<String> mascotas = new ArrayList<>();
     Session session = factory.openSession();
     session.beginTransaction();
-    return session;
+    List<Mascota> objMascotas = session.createQuery("from Mascota where nombre = :n and apellido = :ap", Mascota.class)
+        .setParameter("n", nombre)
+        .setParameter("ap", apellido)
+        .list();
+    session.close();
+
+    return objMascotas;
   }
 
   public void create(String nombre, String apellido, String tipo_mascota, String raza, int edad, String observacion)
@@ -67,17 +82,6 @@ public class MascotaControlador {
     session.persist(mascota);
     session.getTransaction().commit();
     session.close();
-  }
-
-  public List<String> getByLastname(String apellido) throws Exception {
-    // List<String> mascotas = new ArrayList<>();
-    Session session = factory.openSession();
-    session.beginTransaction();
-    List<Mascota> objMascotas = session.createQuery("from Mascota where apellido = :ap", Mascota.class)
-        .setParameter("ap", apellido).list();
-    session.close();
-    return objToString(objMascotas);
-    // return mascotas;
   }
 
   public List<String> objToString(List<Mascota> objMascotas) {
