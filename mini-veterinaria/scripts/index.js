@@ -23,11 +23,20 @@ function show (mascotas) {
         <td>${obj.raza}</td>
         <td>${obj.edad}</td>
         <td>${obj.observacion}</td>
+        <td>
+          <button class="btn btn-warning" onclick='update(${JSON.stringify(obj)})'>Actualizar</button>
+          &nbsp;
+          <button class="btn btn-danger">Eliminar</button>
+        </td>
       </tr>
     `
   }
 
   tbody.innerHTML = tr_body
+}
+
+function update (mascota) {
+  window.location.href = `form.html?mascota=${JSON.stringify(mascota)}`
 }
 
 async function main () {
