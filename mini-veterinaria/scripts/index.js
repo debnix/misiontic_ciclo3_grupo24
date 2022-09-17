@@ -26,7 +26,7 @@ function show (mascotas) {
         <td>
           <button class="btn btn-warning" onclick='update(${JSON.stringify(obj)})'>Actualizar</button>
           &nbsp;
-          <button class="btn btn-danger">Eliminar</button>
+          <button class="btn btn-danger" onclick="delete_mascota(${obj.id})">Eliminar</button>
         </td>
       </tr>
     `
@@ -37,6 +37,16 @@ function show (mascotas) {
 
 function update (mascota) {
   window.location.href = `form.html?mascota=${JSON.stringify(mascota)}`
+}
+
+async function delete_mascota (id) {
+  // Enviar petición
+  const resp = await fetch(`${URL_API}/${id}`, {
+    method: 'DELETE'
+  })
+  const text = await resp.text()
+  // alert(text)
+  main()
 }
 
 async function main () {
