@@ -38,3 +38,25 @@ function clear (form) {
   form.edad.value = ""
   form.observacion.value = ""
 }
+
+function set_form (form, mascota) {
+  form.nombre.value = mascota.nombre
+  form.apellido.value = mascota.apellido
+  form.tipo_mascota.value = mascota.tipo_mascota
+  form.raza.value = mascota.raza
+  form.edad.value = mascota.edad
+  form.observacion.value = mascota.observacion
+}
+
+function get_params () {
+  const search = window.location.search
+  const url = new URLSearchParams(search)
+  const param_mascota = url.get("mascota")
+  if (param_mascota) {
+    const mascota = JSON.parse(param_mascota)
+    const form = document.getElementById("form")
+    set_form(form, mascota)
+  }
+}
+
+get_params()
